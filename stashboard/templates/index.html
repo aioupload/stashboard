@@ -1,45 +1,46 @@
-{% extends "base.html" %}
+{% extends "base_mashape.html" %}
 
 {% block content %}
-<table id="services" class="data">
-  <thead>
-    <tr>
-      <th>Service</th>
-      <th class="today">Current</th>
-      {% for day in days %}
-      <th> {{ day|date:"N d" }} </th>
-      {% endfor %}
-  </thead>
-
-  <tbody>
-    {% for service in services %}
-    <tr id="{{ service.slug}}">
-      <td>
-	<a href="{{ service.url }}">{{ service.name }}</a>
-      </td>
-      <td class="status highlight">
-	<a href="{{ service.url }}/{% now "Y/m/j" %}">
-	  {% if service.has_issues %}
-	    <img class="information" src="/images/small-information.png" alt="Had Issues"/>
-	  {% endif %}
-	  <img class="sym" src="/images/{{ service.status.image }}" alt="{{ service.status.title }}"/>
-	</a>
-      </td>
+{% for service in services %}
+<section class="status">
+<!--{{ service.slug}}-->
+<!--{{ service.url }}-->
+<!--{{ service.url }}/{% now "Y/m/j" %}-->
+<!--
+{% if service.has_issues %}
+{% endif %}
+-->
+  <h1><a href="{{ service.url }}">{{ service.name }}</a></h1>
+    <div class="container">
+      <div class="row">
+        <div class="side"><p>Status:</p></div>
+        <div class="center">
+        <a href="{{ service.url }}" class="circle {{ service.status.slug }}"></a>
+      </div>
+      <div class="side">
+        <p class="{{ service.status.slug }}">{{ service.status.name }}</p>
+      </div>
+    </div>
+    <div class="history">
       {% for h in service.history %}
-      <td class="status">
+      <div class="col">
+        <p>{{ h.day|date:"N d" }}</p>
 	{% if h.information %}
-	<a href="{{ service.url }}/{{ h.day|date:"Y/m/j" }}">
-	  <img class="sym" src="/images/{{ h.image }}" alt="{{ h.title }}"/>
+	<a href="{{ service.url }}/{{ h.day|date:'Y/m/j' }}">
+	  <span class="circle small {{ h.name|lower }}"></span>
 	</a>
 	{% else %}
-	<img class="sym" src="/images/{{ h.image }}" alt="{{ h.title }}"/>
+	<span class="circle small {{ h.name|lower }}"></span>
 	{% endif %}
-      </td>
+        <p class="state {{ h.name|lower }}">{{ h.name }}</p>
+      </div>
       {% endfor %}
-    {% endfor %}
-  </tbody>
-</table>
+    </div>
+  </div>
+</section>
+{% endfor %}
+{% endblock %}
 
-{% include "_legend.html" %}
-
+{% block js_end %}
+{% include "_js_end.html" %}
 {% endblock %}

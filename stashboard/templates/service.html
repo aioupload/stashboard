@@ -1,54 +1,35 @@
-{% extends "base.html" %}
+{% extends "base_mashape.html" %}
 
 {% block content %}
-
-<h2>{{ service.name }} <a class="button pill service-rss" href="/rss?services={{ service.slug }}"><img src="/images/feed-icon-14x14.png"/></a></h2>
-<p id="serviceDescription"> {{ service.description }}</p>
-
 {% if start_date %}
-<h3 class="date-range">
+<!--<h3 class="date-range">
   {{ start_date|date:"n/j/Y" }}
-</h3>
+</h3>-->
 {% endif %}
-
-{% if events %}
-<table id="events" class="data" cellpadding="10">
-  <thead>
-    <tr>
-      <th class="time-header">Time</th>
-      <th class="status-header">Status</th>
-      <th class="status-header">Message</th>
-    </tr>
-  </thead>
-  <tbody>
+<section class="status">
+  <h1>{{ service.name }}</h1>
+  <h2>{{ service.description }}</h2>
+  <div class="container">
+    {% if events %}
+    <div class="row events">
+      <div class="col">Time</div>
+      <div class="col">Status</div>
+      <div class="col">Message</div>
+    </div>
     {% for e in events %}
-    <tr>
-      <td class="time">{{ e.start|timesince }} ago</td>
-      {% if e.informational %}
-      <td class="status highlight"><img src="/images/icons/fugue/information.png" alt="Information" /></td>
-      <td>{{ e.message }}</td>
-      {% else %}
-      <td class="status highlight"><img src="/images/{{ e.status.image }}" alt="{{ e.status.title }}" /></td>
-      <td>{{ e.message }}</td>
-      {% endif %}
-    </tr>
+    <div class="events">
+      <div class="col"><p class="light">{{ e.start|timesince }} ago</p></div>
+      <div class="col"><span class="{{ e.status.name|lower }}"><span class="circle inline {{ e.status.name|lower }}"></span>{{ e.status.name }}</span></div>
+      <div class="col">{{ e.message }}</div>
+    </div>
     {% endfor %}
-  </tbody>
-</table>
-{% else %}
-<section id="noevents">
+    {% else %}
+    <h2 class="nothing">Nothing to see here.</h2>
+    {% endif %}
+  </div>
 </section>
-<section id="allgood">
-  <img src="/images/icons/iconic/check_alt.png" alt="Up"/>
-  {% if start_date %}
-  <p>No events here! The service was up and running for this time range.</p>
-  {% else %}
-  <p>No strange events, this service is up and running smoothly.</p>
-  {% endif %}
-</section>
-{% endif %}
-
-{% include "_legend.html" %}
-
 {% endblock %}
 
+{% block js_end %}
+{% include "_js_end.html" %}
+{% endblock %}

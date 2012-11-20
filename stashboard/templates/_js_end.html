@@ -1,0 +1,16 @@
+<script type="text/javascript" src="/js/zepto.min.js"></script>
+<script type="text/javascript">
+$( function () {
+	var $item = $( '.status' );
+	if ( $item.length <= 1 ) {
+		var itemHeight = $item.height();
+		var windowHeight, offset;
+		$( window ).resize( function () {
+			windowHeight = $(window).height();
+			offset = windowHeight / 2 - itemHeight / 2 - 180;
+			$item.css( 'top', offset > 0 ? offset : 0 + 'px' );
+		} );
+		$( window ).trigger( 'resize' );
+	}
+} );
+</script>

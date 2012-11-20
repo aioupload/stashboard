@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/css/status.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/css/font-awesome.css" type="text/css" media="screen" />
+    <link rel="icon" type="image/png" href="/images/favicon.png' /}">
+    {% block js %}
+    {% endblock %}
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <div class="container">
+          <a href="/" id="logo"><span>{{ title }}</span></a>
+          <span class="tagline">: status</span>
+          <div class="button-group">
+            <a href="/rss" class="button"><i class="icon-rss"></i> Feeds</a>
+            {% if admin %}
+            <a class="button" href="/admin"><i class="icon-cog"></i> Admin</a>
+            {% endif %}
+            <a href="{{ report_url }}" class="button"><i class="icon-comments"></i> Report an Issue</a>
+          </div>
+        </div>
+      </header>
+      {% block content %}
+      {% endblock %}
+      <footer>
+        <div class="container">
+          &copy; {% now "Y" %} Mashape
+          {% if user %}
+          / <a href="{{ logout_url }}">Logout</a>
+          {% else %}
+          / <a href="/admin">Admin</a>
+          {% endif %}
+          <span class="right">Powered by <a href="http://stashboard.org/">Stashboard</a></span>
+        </div>
+      </footer>
+    </div>
+    {% block js_end %}
+    {% endblock %}
+  </body>
+</html>
