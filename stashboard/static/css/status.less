@@ -177,8 +177,8 @@ header {
 		}
 		&:last-of-type { border-bottom: 0; }
 	}
-	.up, .active, .information { color: #9bcb6c; }
-	.warning { color: #e5bb29; }
+	.up, .active { color: #9bcb6c; }
+	.warning, .information { color: #e5bb29; }
 	.down, .error { color: #fc0303; }
 	.history {
 		padding: 56px 5%;
@@ -193,7 +193,7 @@ header {
 			&:last-of-type { border-right: 0; }
 			p { margin-bottom: 16px; font-weight: bold; }
 			.state {
-				font-weight: normal;
+				font-weight: normal; text-transform: capitalize;
 				margin: 8px 0 0;
 				opacity: 0.8;
 			}
@@ -237,10 +237,10 @@ header {
 		position: relative;
 		top: 0.09em;
 		text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
-		&.up, &.active, &.information {
+		&.up, &.active {
 			&:before { content: '\f058'; }
 		}
-		&.warning {
+		&.warning, &.information {
 			&:before { content: '\f071'; }
 		}
 		&.down, &.error {
