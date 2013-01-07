@@ -28,11 +28,13 @@
 	{% if h.information %}
 	<a href="{{ service.url }}/{{ h.day|date:'Y/m/j' }}">
 	  <span class="circle small {{ h.name|lower }}"></span>
+        <p class="state {{ h.name|lower }}">{{ h.name }}</p>
 	</a>
 	{% else %}
 	<span class="circle small {{ h.name|lower }}"></span>
+    <p class="state {{ h.name|lower }}">{{ h.name }}</p>
+
 	{% endif %}
-        <p class="state {{ h.name|lower }}">{{ h.name }}</p>
       </div>
       {% endfor %}
     </div>
