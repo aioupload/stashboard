@@ -29,11 +29,6 @@
       <footer>
         <div class="container">
           &copy; {% now "Y" %} Mashape
-          {% if user %}
-          / <a href="{{ logout_url }}">Logout</a>
-          {% else %}
-          / <a href="/admin">Admin</a>
-          {% endif %}
           <span class="right">Powered by <a href="http://stashboard.org/">Stashboard</a></span>
         </div>
       </footer>
