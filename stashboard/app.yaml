@@ -1,4 +1,4 @@
-application: stashboard-hrd
+application: mashstatus
 version: 2
 runtime: python
 api_version: 1
@@ -60,6 +60,7 @@ skip_files: |
  (.*/RCS/.*)|
  (\..*)|
  (dev/.*)|
+ (.*\.less)|
  (tests/.*)|
  (docs/.*)|
  (.*\.markdown)|
