@@ -5,7 +5,7 @@ DEBUG = False
 SITE_NAME = "Mashape Status"
 SITE_AUTHOR = "Mashaper"
 SITE_URL = "http://status.mashape.com"
-REPORT_URL = "mailto:support@mashape.org"
+REPORT_URL = "mailto:support@mashape.com"
 
 # Twitter update settings
 TWITTER_CONSUMER_KEY = ''
